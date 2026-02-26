@@ -20,15 +20,13 @@ function logout() {
 
 window.onload = function () {
     let currentUser = localStorage.getItem("user");
+    let welcome = document.getElementById("welcomeText");
 
-    if (window.location.pathname.includes("dashboard.html")) {
+    if (welcome) {
         if (!currentUser) {
             window.location.href = "login.html";
         } else {
-            let welcome = document.getElementById("welcomeText");
-            if (welcome) {
-                welcome.innerText = "Welcome " + currentUser + " 👋";
-            }
+            welcome.innerText = "Welcome " + currentUser + " 👋";
         }
     }
 };
