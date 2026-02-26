@@ -1,14 +1,16 @@
 function signup() {
-    let username = document.getElementById("username").value;
-    let password = document.getElementById("password").value;
+    var username = document.getElementById("username");
+    var password = document.getElementById("password");
 
-    if (username === "" || password === "") {
+    if (!username || !password) return;
+
+    if (username.value === "" || password.value === "") {
         alert("Please fill all fields");
         return;
     }
 
-    localStorage.setItem("user", username);
-    localStorage.setItem("pass", password);
+    localStorage.setItem("user", username.value);
+    localStorage.setItem("pass", password.value);
 
     window.location.href = "dashboard.html";
 }
@@ -18,15 +20,16 @@ function logout() {
     window.location.href = "index.html";
 }
 
-window.onload = function () {
-    let currentUser = localStorage.getItem("user");
-    let welcome = document.getElementById("welcomeText");
+window.addEventListener("DOMContentLoaded", function () {
+    var welcome = document.getElementById("welcomeText");
 
     if (welcome) {
+        var currentUser = localStorage.getItem("user");
+
         if (!currentUser) {
             window.location.href = "login.html";
         } else {
-            welcome.innerText = "Welcome " + currentUser + " 👋";
+            welcome.textContent = "Welcome " + currentUser + " 👋";
         }
     }
-};
+});
